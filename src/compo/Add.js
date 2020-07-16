@@ -7,7 +7,7 @@ class Add extends Component {
 
         this.state = {
             title: '',
-            task: ''
+            task: '',
         }
     }
     handleChange = e => {
@@ -15,8 +15,9 @@ class Add extends Component {
     }
     handleSubmit = e => {
         e.preventDefault()
-        axios.post('http://127.0.0.1:5000/todo', this.state)
+        axios.post('http://localhost:5000/todo', this.state, { withCredentials: true })
             .then(resp => {
+                console.log(resp)
                 return this.props.funt();
             })
             .catch(error => { console.log(error) })

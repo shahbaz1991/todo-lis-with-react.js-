@@ -34,7 +34,7 @@ class Task extends Component {
     }
     handleUpdate = (e) => {
         //e.preventDefault()
-        axios.put('http://127.0.0.1:5000/todo/' + this.state.dis_id, { task: this.state.dis.task })
+        axios.put('http://localhost:5000/todo/' + this.state.dis_id, { task: this.state.dis.task }, { withCredentials: true })
             .then(resp => {
                 return this.props.funt();
             })
@@ -45,9 +45,13 @@ class Task extends Component {
         })
     }
     handleDelete = (id) => {
-        axios.delete('http://127.0.0.1:5000/todo/' + id)
+        axios.delete('http://localhost:5000/todo/' + id, { withCredentials: true })
             .then(resp => {
+                this.setState({
+                    dis: { task: '' }
+                })
                 return this.props.funt();
+
             })
             .catch(error => { console.log(error) });
     }
@@ -69,8 +73,8 @@ class Task extends Component {
                                     <button className="btn btn-danger" onClick={() => this.handleDelete(task.id)}>DELETE</button>
                                 </div>
                             </div>
-                        </div>)
-                    }
+                        </div>
+                    )}
                 </div>
                 <div className="dis">
                     DISCRIPTION
@@ -92,6 +96,8 @@ class Task extends Component {
             </div>*/
         )
     }
+
+
 }
 
 export default Task

@@ -1,42 +1,78 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import axios from 'axios'
-import Add from './compo/Add';
-import Task from './compo/Task';
+import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
+import RegistrationForm from './forms/RegistrationForm'
+import LoginForm from './forms/LoginForm'
+import Main from './compo/Main'
+import ProtectedRoute from './Routing/ProtectedRoute'
+import MyContext from './Routing/MyContext'
+import axios from 'axios';
 
+function App() {
+  const [login, setLogin] = useState(false)
+  const [user_id, setUser_id] = useState('')
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      arr: []
-    }
+  const changeContext = () => {
+    setLogin(!login)
+    console.log("in_Route" + login)
   }
-  get_refresh = () => {
-    return axios.get('http://127.0.0.1:5000/todo')
-      .then(resp => {
-        this.setState({
-          arr: resp.data
-        },
-        )
-      })
-      .catch(error => { console.log(error) })
+  const changeUser_id = (d) => {
+    setUser_id(d)
   }
-  render() {
-    return (
-      <div className='todo'>
-        <div className="add">
-          ADD
-          <Add funt={this.get_refresh} />
+
+  useEffect(
+    () => {
+      function fetch() {
+        axios.get('http://localhost:5000/details', { withCredentials: true })
+          .then(resp => {
+            console.log(resp)
+            setLogin(true)
+            setUser_id(resp.data.user_name)
+          })
+          .catch(resp => {
+            console.log(resp)
+          })
+      }
+      fetch()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []
+  );
+
+
+
+  return (
+    <BrowserRouter>
+      <MyContext.Provider value={{ login, changeContext, user_id, changeUser_id }}>
+        <div className="app">
+
+          <div className='main'>
+            <h1>Welcome<br></br> To The TO-DO LIST APP</h1>
+            <p>This App will help you to remember all your future working tasks </p>
+          </div>
+
+          <div className='header'>
+            <nav>
+              <ul>
+                <li><Link to='/register' className='link'>Register</Link></li>
+                <li><Link to='/login' className='link'>Login</Link></li>
+              </ul>
+              <hr ></hr>
+            </nav>
+          </div>
+
+          <div className='sidebar' >
+            <Switch>
+              <Route path='/register'>  <RegistrationForm />  </Route>
+              <Route path='/login'>  <LoginForm />  </Route>
+
+              {login ? <ProtectedRoute path='/todo' component={Main} /> : <Redirect to='login' />}
+            </Switch>
+          </div>
         </div>
-        <div className='task_main'>
-          TASK
-          <Task funt={this.get_refresh} arr={this.state.arr} />
-        </div>
-      </div>
-    );
-  }
+      </MyContext.Provider>
+    </BrowserRouter >
+  );
 }
+
 
 export default App;

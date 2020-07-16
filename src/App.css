@@ -1,12 +1,15 @@
 .todo{
   display:flex;
   flex-direction: column;
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;     
-  border: 2px solid black;
-}
-.add{ 
+  margin-top: -13%;
+  margin-left: -150%;
+  height: 100vh;
+  border: 1px solid black;
+  /* top: 0; right: 0; bottom: 0; left: 0;  */
+  /* width: 100%; */
   
+}
+.add{   
   background-color: #7105ec;
   color: white;
   font-size: 25px;
@@ -16,8 +19,7 @@
   display: flex;
   flex-direction: row wrap;
   width: 100%;  
-  height: 100%; 
- 
+  height: 100%;  
 }
 .add_inp{ 
   display: flex;
@@ -50,7 +52,7 @@
   flex-direction: column ;
   font-size: 25px;
   text-align: center; 
-  height: 100%;  
+  height: 80%;  
   border: 1px solid black;  
   background-color: #7105ec;
   color: white;
@@ -60,7 +62,7 @@
   display: flex;  
   width: 100%;
   overflow-y: auto;
-  max-height: 340px; 
+  max-height: 300px; 
   flex-direction: column;
   background-color: #7105ec;
 
@@ -90,33 +92,30 @@
   border: 1px solid black;
 }
 
-
 .dis{
   display: flex;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center; 
   flex-direction: column;
-  height: 100%;
-  font-size: 25px;  
-  max-height: 130px;
-  border: 1px solid rgb(5, 5, 5);
+  font-size: 25px;    
+  border: 1px solid red; 
   background-color: #7105ec;
 }
 .dis_inp_but{
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row wrap;  
- 
+  flex-direction: row; 
 }
-.dis_inp{
-  width: 100%;
-}
-.dis_txt{
+.dis_inp{  
   width: 100%;
   height: 100%;
-  font-size: 25px;
+}
+.dis_txt{ 
+  font-size: 25px;  
+  width: 100%;
+  height: 100%;
   border: 1px solid black;
 }
 
@@ -124,4 +123,132 @@
   width: 100%;
   height: 100%;
   border: 1px solid black;  
+}
+.logout{
+  box-sizing: border-box;
+  background-color: #7105ec;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;  
+}
+.logout .btn-danger{
+  width: 20%;
+  height: 100%;
+  
+}
+.logout p{
+  color: white;
+  font-size: 130%;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+
+.app{  
+  height: 100vh;
+  width: 1298px;  
+  /* background-image:url(./image/HD-Minimalist-Picture.jpg);
+  background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat; 
+  background-size: 100%; */
+  
+  /*box-sizing: border-box; 
+  height: 80vh;
+  width: 1200px;*/  
+    
+  /*background-repeat :no-repeat; 
+  background-position: center cover;
+  background-size: 100% 100%;*/  
+  
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 10% 90%;
+  grid-template-areas: "header header"
+                        "main sidebar";
+}
+
+h1{ 
+  font-family: 'Times New Roman';
+  color: red;  
+  font-size: 50px;
+  text-align: center; 
+}
+
+p{ 
+  font-family: Cambria;
+  font-size: 30px;
+  color:orangered;
+}
+
+.header{   
+  /*grid-template-columns: 1/3;
+  grid-template-rows: 1/2;*/
+  grid-area: header;
+}
+
+ul{
+   
+  list-style-type: none; 
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-end;
+}
+
+ul li{ 
+  font-family: Cambria;   
+  font-size: 150%;
+  margin-right: 10%;
+  margin-top: 1%;
+}
+
+.link{
+  color: red;
+  font-weight: bold;   
+}
+
+.main{
+  /*grid-template-columns: 1/2;
+  grid-template-rows: 2/3;*/
+  grid-area: main;
+  padding: 2%;
+}
+.main p{
+  padding: 5%;
+  text-align: center;
+}
+.sidebar{   
+  /*grid-template-columns: 1/3;
+  grid-template-rows: 2/3;*/ 
+  grid-area: sidebar;
+}
+.sidebar p{
+  padding-left: 10%;
+}
+.formInp input{
+  width: 100%;
+}
+.formInp{
+  padding: 10%;
+}
+form{
+  font-size: 25px;
+  color: orangered;
+  font-weight: bolder;
+}
+#reg_but{
+  background-color: orangered;
+  border: 2px solid orangered;
+  border-radius: 8px;
+  color: white;
+}
+#login_but{
+  margin-top: 20px;
+  background-color: orangered;
+  border: 2px solid orangered;
+  border-radius: 8px;
+  color: white;
 }
